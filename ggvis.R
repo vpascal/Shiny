@@ -1,0 +1,22 @@
+all_values <- function(x) {
+  if(is.null(x)) return(NULL)
+  paste0(names(x), ": ", format(x), collapse = "<br />")
+}
+
+gender%>%
+  ggvis(x=~Date,y=~value,stroke= ~variable) %>%
+  layer_lines() %>%
+  layer_points() %>%
+  add_tooltip(all_values, "hover")
+
+area%>%
+  ggvis(x=~long,y=~lat, stroke := "white") %>%
+  group_by(group) %>%
+  layer_paths() %>%
+  layer_paths(fill=~Value) %>%
+  hide_axis("x")%>%
+  hide_axis("y") %>%
+  #layer_points() %>%
+  add_tooltip(all_values, "hover") %>%
+ set_options(width = 400, height = 500)
+
