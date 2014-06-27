@@ -1,12 +1,17 @@
+
+
+
 all_values <- function(x) {
   if(is.null(x)) return(NULL)
   paste0(names(x), ": ", format(x), collapse = "<br />")
 }
 
 gender%>%
-  ggvis(x=~Date,y=~value,stroke= ~variable) %>%
+  ggvis(x=~Date,y=~Answer,stroke= ~Question) %>%
   layer_lines() %>%
-  layer_points() %>%
+  layer_points(stroke=~Question) %>%
+	add_axis("x", title = "")%>%
+	add_axis("y", title = "")%>%
   add_tooltip(all_values, "hover")
 
 area%>%
