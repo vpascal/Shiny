@@ -90,7 +90,8 @@ shinyServer(function(..., session) {
 	  hide_axis("x")%>%
 	  hide_axis("y") %>%
 	  #layer_points() %>%
-	  add_tooltip(all_values, "hover") %>%
+	  #add_tooltip(all_values, "hover") %>%
+    add_tooltip(function(area) sprintf(area$Key))%>%
 	  set_options(width = 400, height = 500)%>%
   	bind_shiny("map")
 	
