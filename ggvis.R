@@ -1,4 +1,4 @@
-
+load("C:/Users/Vladislav Pascal/Documents/a.RData")
 
 
 all_values <- function(x) {
@@ -7,18 +7,27 @@ all_values <- function(x) {
 }
 
 gender%>%
-  ggvis(x=~Date,y=~Answer,stroke= ~Question) %>%
+  ggvis(x=~Date,y=~value,stroke= ~variable) %>%
   layer_lines() %>%
-  layer_points(stroke=~Question) %>%
+  layer_points(stroke=~variable) %>%
 	add_axis("x", title = "")%>%
 	add_axis("y", title = "")%>%
+  add_tooltip(function(gender) round((gender$value),digits=1),"hover")
+
+
+data_age%>%
+  ggvis(x=~Date,y=~value,stroke= ~variable) %>%
+  layer_lines() %>%
+  layer_points(stroke=~variable) %>%
+  add_axis("x", title = "")%>%
+  add_axis("y", title = "")%>%
   add_tooltip(all_values, "hover")
 
 area%>%
   ggvis(x=~long,y=~lat, stroke := "white") %>%
   group_by(group) %>%
   layer_paths() %>%
-  layer_paths(fill=~Value) %>%
+  layer_paths(fill=~Key) %>%
   hide_axis("x")%>%
   hide_axis("y") %>%
   #layer_points() %>%
