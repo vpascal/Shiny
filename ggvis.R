@@ -1,4 +1,4 @@
-load("C:/Users/Vladislav Pascal/Documents/a.RData")
+load("a.RData")
 
 
 all_values <- function(x) {
